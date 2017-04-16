@@ -11,7 +11,7 @@ import java.util.List;
 @Component
 public class GifRepository
 {
-    private static final List<Gif> ALL_GIFS = Arrays.asList(
+    private List<Gif> allGifs = Arrays.asList(
             new Gif("gif1", "andrzej", LocalDate.now(), false, 1),
             new Gif("gif2", "monika", LocalDate.now(), true, 2),
             new Gif("gif3", "michal", LocalDate.now(), true, 3),
@@ -22,7 +22,7 @@ public class GifRepository
 
     public Gif findByName(String name)
     {
-        for(Gif el : ALL_GIFS)
+        for(Gif el : allGifs)
         {
             if(el.getName().equals(name))
             {
@@ -32,17 +32,30 @@ public class GifRepository
         return null;
     }
 
-    public List<Gif> getAllGifs()
+    public List<Gif> findAll()
     {
-        return ALL_GIFS;
+        return allGifs;
     }
 
     public List<Gif> getFavorites()
     {
         List<Gif> gifs = new ArrayList<>();
-        for(Gif el : ALL_GIFS)
+        for(Gif el : allGifs)
         {
             if(el.isFavorite())
+            {
+                gifs.add(el);
+            }
+        }
+        return gifs;
+    }
+
+    public List<Gif> findByCategoryId(int id)
+    {
+        List<Gif> gifs = new ArrayList<>();
+        for(Gif el : allGifs)
+        {
+            if(el.getCategoryId() == id)
             {
                 gifs.add(el);
             }

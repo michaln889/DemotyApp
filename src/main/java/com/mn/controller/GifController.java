@@ -21,7 +21,7 @@ public class GifController
     //@ResponseBody
     public String listOfGifs(ModelMap modelMap)
     {
-        List<Gif> gifs = gifRepository.getAllGifs();
+        List<Gif> gifs = gifRepository.findAll();
         modelMap.put("gifs", gifs);
         return "home";
     }
