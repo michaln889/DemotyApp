@@ -1,12 +1,11 @@
-package com.mn.data;
+package com.mn.service;
+
 
 import com.mn.model.Gif;
-import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@Component
-public interface GifRepository
+public interface GifService
 {
     List<Gif> findAll();
     Gif findByName(String name);

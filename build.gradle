@@ -21,5 +21,6 @@ dependencies {
     // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-web
     testCompile group: 'junit', name: 'junit', version: '4.11'
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-thymeleaf', version: '1.4.1.RELEASE'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-security', version: '1.4.3.RELEASE'
 }
 

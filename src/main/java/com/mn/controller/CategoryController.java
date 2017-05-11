@@ -1,8 +1,8 @@
 package com.mn.controller;
 
-import com.mn.data.CategoryRepository;
-import com.mn.data.GifRepository;
 import com.mn.model.Category;
+import com.mn.service.CategoryService;
+import com.mn.service.GifService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -15,15 +15,15 @@ import java.util.List;
 public class CategoryController
 {
     @Autowired
-    private CategoryRepository categoryRepository;
+    private CategoryService categoryService;
 
     @Autowired
-    private GifRepository gifRepository;
+    private GifService gifService;
 
     @RequestMapping("/categories")
-    public String listCategories(ModelMap modelMap)
+    public String getCategories(ModelMap modelMap)
     {
-        List<Category> categories = categoryRepository.getAllCategories();
+        List<Category> categories = categoryService.findAll();
         modelMap.put("categories", categories);
         return "categories";
     }
@@ -31,8 +31,8 @@ public class CategoryController
     @RequestMapping("/category/{id}")
     public String getCategory(@PathVariable int id, ModelMap modelMap)
     {
-        modelMap.put("gifs", gifRepository.findByCategoryId(id));
-        modelMap.put("category", categoryRepository.findById(id));
+        modelMap.put("gifs", gifService.findByCategoryId(id));
+        modelMap.put("category", categoryService.findById(id));
         return "category";
     }
 

@@ -1,14 +1,12 @@
-package com.mn.data;
+package com.mn.service;
 
 import com.mn.model.Category;
-import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 
-@Component
-public interface CategoryRepository {
-
+public interface CategoryService
+{
     List<Category> findAll();
     Category findById(int id);
 }

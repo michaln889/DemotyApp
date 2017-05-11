@@ -1,7 +1,8 @@
 package com.mn.controller;
 
-import com.mn.data.GifRepository;
 import com.mn.model.Gif;
+import com.mn.service.GifService;
+import com.mn.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -15,13 +16,16 @@ import java.util.List;
 public class GifController
 {
     @Autowired
-    private GifRepository gifRepository;
+    private GifService gifService;
+
+    @Autowired
+    private UserService userService;
 
     @RequestMapping("/")
     //@ResponseBody
     public String listOfGifs(ModelMap modelMap)
     {
-        List<Gif> gifs = gifRepository.findAll();
+        List<Gif> gifs = gifService.findAll();
         modelMap.put("gifs", gifs);
         return "home";
     }
@@ -29,7 +33,7 @@ public class GifController
     @RequestMapping("/gif/{name}")
     public String gifDetails(@PathVariable String name, ModelMap modelMap)
     {
-        Gif gif = gifRepository.findByName(name);
+        Gif gif = gifService.findByName(name);
         modelMap.put("gif", gif);
         return "gif-details";
     }
@@ -37,7 +41,7 @@ public class GifController
     @RequestMapping("/favorites")
     public String getFavorites(ModelMap modelMap)
     {
-        List<Gif> gifs = gifRepository.getFavorites();
+        List<Gif> gifs = gifService.findFavorites();
         modelMap.put("gifs", gifs);
         return "favorites";
     }
