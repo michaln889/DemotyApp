@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="layout :: head('DemotyApp')"></head>
+<head th:replace="layout :: head('Add new category')"></head>
 <body>
+<div th:replace="layout :: nav"></div>
 <div class="navbar-fixed">
     <nav>
         <div class="container">
@@ -23,19 +24,39 @@
     </nav>
 </div>
 
-<div th:replace="layout :: searchbar"></div>
 
-<div class="gifs container">
-    <div class="row">
-        <div th:each="gif : ${gifs}" class="col s12 l4">
-            <a th:href="@{|/gif/${gif.name}|}">
-                <img th:src="@{|/gifs/${gif.name}.gif|}" />
-                <a href="#" th:class="(${gif.favorite}? 'un' : '') + 'mark favorite'"></a>
-            </a>
+
+<div class="container">
+    <h3 th:text="${formCategory}">Form template static</h3>
+    <form th:action="@{/category/save}" method="post" th:object="${category}">
+        <div class="row">
+            <div class="col s9">
+                <h5>Categories</h5>
+            </div>
         </div>
-    </div>
+        <input type="hidden" th:field="*{id}"/>
+
+        <div class="divider"></div>
+        <div class="row">
+            <div class="col s12 l8">
+                <input type="text" th:field="*{name}" placeholder="Category Name" required="required"/>
+            </div>
+        </div>
+
+
+
+        <div class="row">
+            <div class="col s12 l8">
+                <button type="submit" class="waves-effect waves-light btn green">Save</button>
+                <a th:href="@{/categories}" th:type="button" class="waves-effect waves-light btn">Cancel</a>
+            </div>
+        </div>
+    </form>
+
 </div>
 
+
 <div th:replace="layout :: scripts"></div>
+
 </body>
 </html>

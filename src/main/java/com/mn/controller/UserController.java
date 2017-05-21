@@ -25,7 +25,7 @@ public class UserController
     public ModelAndView getUsers()
     {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("users");
+        modelAndView.setViewName("user/users");
         modelAndView.addObject("users", userService.findAll());
         return modelAndView;
     }
@@ -44,7 +44,7 @@ public class UserController
         User user = userService.findById(id);
         model.addAttribute("user", user);
         model.addAttribute("formTitle", "Edit user");
-        return "form";
+        return "user/form";
     }
     @RequestMapping(value = "/user/save", method = RequestMethod.POST)
     public String postCreate(@ModelAttribute User user)
@@ -59,12 +59,12 @@ public class UserController
     {
         User user = userService.findById(id);
         modelMap.put("user", user);
-        return "users";
+        return "user/users";
     }
 
     //delete
     @RequestMapping(value = "/user/delete/{id}")
-    public String deleteUserById(@PathVariable int id, Model model)
+    public String deleteUserById(@PathVariable("id") int id, Model model)
     {
         userService.deleteUserById(id);
         List<User> users = userService.findAll();

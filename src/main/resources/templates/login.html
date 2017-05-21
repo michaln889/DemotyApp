@@ -1,48 +1,38 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-
-    <link rel="icon" th:href="@{/favicon.png}" />
-
-    <link rel="stylesheet" th:href="@{/vendor/materialize/css/materialize.css}" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-    <link rel="stylesheet" th:href="@{/app.css}" />
-
-    <title>Login</title>
-
-</head>
+<head th:replace="layout :: head('Login')"></head>
 <body>
-    <div class="navbar-fixed">
-        <nav>
-            <div class="container">
-                <a th:href="@{/}" class="brand-logo">DemotyApp</a>
+<div class="navbar-fixed">
+    <nav>
+        <div class="container">
+            <a th:href="@{/}" class="brand-logo">DemotyApp</a>
+        </div>
+    </nav>
+</div>
+<div class="container center-align">
+    <form th:action="@{/login}" method="post">
+        <!--<h5>Login form</h5>--><br/><br/><br/>
+        <b>Username:</b>
+        <div class="row">
+            <div class="col l5"></div>
+            <div class="col l2">
+                <input type="text" value="user" name="username"/>
             </div>
-        </nav>
-    </div>
-    <div class="container center-align">
-        <form th:action="@{/login}" method="post">
-            <!--<h5>Login form</h5>--><br/><br/><br/>
-            <b>Username:</b>
-            <div class="row">
-                <div class="col l5"></div>
-                <div class="col l2">
-                    <input type="text" value="user" name="username"/>
-                </div>
-                <div class="col l5"></div>
+            <div class="col l5"></div>
+        </div>
+        <b>Password:</b>
+        <div class="row">
+            <div class="col l5"></div>
+            <div class="col l2">
+                <input type="password" class="center-align" value="password" name="password"/>
             </div>
-            <b>Password:</b>
-            <div class="row">
-                <div class="col l5"></div>
-                <div class="col l2">
-                    <input type="password" class="center-align" value="password" name="password"/>
-                </div>
-                <div class="col l5"></div>
-            </div>
-            <button th:type="submit" class="waves-effect waves-light btn">Sign in</button>
-        </form>
-    </div>
+            <div class="col l5"></div>
+        </div>
+        <button th:type="submit" class="waves-effect waves-light btn">Sign in</button>
+    </form>
+</div>
+
+<div th:replace="layout :: scripts"></div>
 
 </body>
 </html>

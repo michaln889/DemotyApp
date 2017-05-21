@@ -12,4 +12,6 @@ public interface GifRepository
     Gif findByName(String name);
     List<Gif> findFavorites();
     List<Gif> findByCategoryId(int id);
+    Gif findById(int id);
+    void makeFavoriteOrUnfavorite(Gif gif);
 }

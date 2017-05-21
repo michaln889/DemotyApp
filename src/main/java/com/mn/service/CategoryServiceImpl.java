@@ -24,4 +24,14 @@ public class CategoryServiceImpl implements CategoryService
     {
         return categoryRepository.findById(id);
     }
+
+    @Override
+    public void saveOrUpdate(Category category) {
+        categoryRepository.saveOrUpload(category);
+    }
+
+    @Override
+    public void delete(int id) {
+        categoryRepository.delete(id);
+    }
 }

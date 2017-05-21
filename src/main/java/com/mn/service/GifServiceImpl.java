@@ -32,4 +32,14 @@ public class GifServiceImpl implements GifService
     public List<Gif> findByCategoryId(int id) {
         return gifRepository.findByCategoryId(id);
     }
+
+    @Override
+    public Gif findById(int id) {
+        return gifRepository.findById(id);
+    }
+
+    @Override
+    public void makeFavoriteOrUnfavorite(Gif gif) {
+        gifRepository.makeFavoriteOrUnfavorite(gif);
+    }
 }

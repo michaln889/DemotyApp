@@ -11,4 +11,6 @@ public interface CategoryRepository {
 
     List<Category> findAll();
     Category findById(int id);
+    void saveOrUpload(Category category);
+    void delete(int id);
 }

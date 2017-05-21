@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: head(${gif.name})"></head>
+<body>
+<div class="navbar-fixed">
+    <nav>
+        <div class="container">
+            <a th:href="@{/}" class="brand-logo">DemotyApp</a>
+            <a href="#" data-activates="mobile-nav" class="button-collapse right"><i class="material-icons">menu</i></a>
+            <ul class="right hide-on-med-and-down">
+                <li><a th:href="@{/}">Explore</a></li>
+                <li><a th:href="@{/categories}">Categories</a></li>
+                <li><a th:href="@{/favorites}">Favorites</a></li>
+                <li><a th:href="@{/users}">Users</a></li>
+            </ul>
+            <ul id="mobile-nav" class="side-nav">
+                <li><a th:href="@{/}">Explore</a></li>
+                <li><a th:href="@{/categories}">Categories</a></li>
+                <li><a th:href="@{/favorites}">Favorites</a></li>
+                <li><a th:href="@{/users}">Users</a></li>
+            </ul>
+        </div>
+    </nav>
+</div>
+
+<div th:replace="layout :: searchbar"></div>
+
+<div class="gif-detail container">
+    <div class="frame row">
+        <div class="col s12">
+            <img th:src="@{'/gifs/' + ${gif.name} + '.gif'}" alt="gif" />
+            <form th:action="@{|/gif/${gif.id}|}" method="post">
+                <button type="submit" th:class="(${gif.favorite} ? 'un' : '') + 'mark favorite'"></button>
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s12 l6">
+            <div class="meta row">
+                <div class="col s3">
+                    <img class="circle" src="http://api.adorable.io/avatars/205/avatar" alt="avatar" />
+                </div>
+                <div class="col s9">
+                    <h4 th:text="${gif.username}">Username</h4>
+                    <p th:text="'Uploaded on ' +${gif.dateUploaded}"></p>
+                </div>
+            </div>
+        </div>
+        <div class="col s12 l6">
+            <div class="share">
+                <a class="btn right" href="#">Copy</a>
+                <span th:text="'localhost:8080/gif/' + ${gif.name}">URL</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div th:replace="layout :: scripts"></div>
+
+</body>
+</html>

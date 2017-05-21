@@ -13,12 +13,12 @@ import java.util.List;
 public class GifRepositoryImpl implements GifRepository
 {
     private List<Gif> allGifs = Arrays.asList(
-            new Gif("gif1", "aaa", LocalDate.now(), false, 1),
-            new Gif("gif2", "bbb", LocalDate.now(), true, 2),
-            new Gif("gif3", "ccc", LocalDate.now(), true, 3),
-            new Gif("gif4", "ddd", LocalDate.now(), false, 1),
-            new Gif("gif5", "eee", LocalDate.now(), true, 2),
-            new Gif("2841-1792494-StickSkok", "fff", LocalDate.now(), false, 2)
+            new Gif(1, "gif1", "aaa", LocalDate.now(), false, 1),
+            new Gif(2, "gif2", "bbb", LocalDate.now(), true, 2),
+            new Gif(3, "gif3", "ccc", LocalDate.now(), true, 3),
+            new Gif(4, "gif4", "ddd", LocalDate.now(), false, 1),
+            new Gif(5, "gif5", "eee", LocalDate.now(), true, 2),
+            new Gif(6, "2841-1792494-StickSkok", "fff", LocalDate.now(), false, 2)
     );
 
     @Autowired
@@ -70,4 +70,30 @@ public class GifRepositoryImpl implements GifRepository
         }
         return gifs;
     }
+
+    @Override
+    public Gif findById(int id) {
+        for(Gif el : allGifs)
+        {
+            if(el.getId() == id)
+            {
+                return el;
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public void makeFavoriteOrUnfavorite(Gif gif) {
+        if(!gif.isFavorite())
+        {
+            gif.setFavorite(true);
+        }
+        else
+        {
+            gif.setFavorite(false);
+        }
+    }
+
+
 }

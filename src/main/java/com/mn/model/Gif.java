@@ -4,23 +4,35 @@ import java.time.LocalDate;
 
 public class Gif
 {
+    private int id;
     private String name;
     private String username;
     private LocalDate dateUploaded;
     private boolean favorite;
     private int categoryId;
+    private String description;
+    private byte[] bytes;
 
 
     public Gif() {
     }
 
-    public Gif(String name, String username, LocalDate dateUploaded, boolean favorite, int categoryId) {
+    public Gif(int id, String name, String username, LocalDate dateUploaded, boolean favorite, int categoryId) {
+        this.id = id;
         this.name = name;
         this.username = username;
         this.dateUploaded = dateUploaded;
         this.favorite = favorite;
         this.categoryId = categoryId;
 
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public LocalDate getDateUploaded() {
@@ -61,5 +73,21 @@ public class Gif
 
     public void setFavorite(boolean favorite) {
         this.favorite = favorite;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public byte[] getBytes() {
+        return bytes;
+    }
+
+    public void setBytes(byte[] bytes) {
+        this.bytes = bytes;
     }
 }

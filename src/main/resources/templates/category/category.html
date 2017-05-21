@@ -1,17 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-
-    <link rel="icon" th:href="@{/favicon.png}" />
-
-    <link rel="stylesheet" th:href="@{/vendor/materialize/css/materialize.css}" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-    <link rel="stylesheet" th:href="@{/app.css}" />
-
-    <title th:text="'giflib | ' + ${category.name}">Category</title>
-</head>
+<head th:replace="layout :: head(${category.name})"></head>
 <body>
 <div class="navbar-fixed">
     <nav>
@@ -33,26 +22,15 @@
         </div>
     </nav>
 </div>
-<div class="search-bar container">
-    <div class="row">
-        <div class="col s12">
-            <form action="#" method="get">
-                <div class="input-field">
-                    <input name="q" type="search" placeholder="Search all gifs..." required="required" autocomplete="off"/>
-                    <i class="material-icons">search</i>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
+
+<div th:replace="layout :: searchbar"></div>
+
 <div class="gifs container">
     <div class="chip" th:text="${category.name}">category name</div>
     <div class="row">
-     
+
         <div th:each="gif : ${gifs}" class="col s12 l4">
-      
             <a th:href="@{'/gif/' + ${gif.name}}">
-               
                 <img th:src="@{'/gifs/' + ${gif.name} + '.gif'}" />
                 <a href="#" th:class="(${gif.favorite}? 'un' : '') + 'mark favorite'"></a>
             </a>
@@ -60,8 +38,23 @@
     </div>
 </div>
 
-<script th:src="@{/vendor/jquery/jquery-1.11.3.js}"></script>
-<script th:src="@{/vendor/materialize/js/materialize.js}"></script>
-<script th:src="@{/app.js}"></script>
+<div class="container">
+    <div>
+        <!-- <a th:href="@{|/category/form/${category.id}|}" th:type="button" class="waves-effect waves-light btn">EDIT</a> -->
+        <div class="row">
+            <div class="col s12 l8">
+                <a th:href="@{|/category/form/${category.id}|}" th:type="button" class="waves-effect waves-light btn">EDIT</a>
+            </div>
+        </div>
+        <div class="row delete">
+            <div class="col s12 l8">
+                <a th:href="@{|/category/delete/${id}|}" th:type="button" class="waves-effect waves-light btn red" onclick="if (!(confirm('Delete?'))) return false">DELETE</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div th:replace="layout :: scripts"></div>
+
 </body>
 </html>

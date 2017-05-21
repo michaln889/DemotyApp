@@ -16,7 +16,8 @@ public class UserRepositoryImpl implements UserRepository
             add(new User(3, "ccc", "ccc", "ccc", "ccc@gmail.com"));
             add(new User(4, "ddd", "ddd", "ddd", "ddd@gmail.com"));
             add(new User(5, "eee", "eee", "eee", "eee@gmail.com"));
-        }};
+        }
+    };
 
     @Override
     public List<User> findAll()
@@ -83,7 +84,7 @@ public class UserRepositoryImpl implements UserRepository
         {
             if(el.getId() == id)
             {
-                users.remove(id);
+                users.remove(pos);
                 break;
             }
             pos++;
