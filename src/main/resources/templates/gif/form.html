@@ -9,17 +9,18 @@
             <a th:href="@{/}" class="brand-logo">DemotyApp</a>
             <a href="#" data-activates="mobile-nav" class="button-collapse right"><i class="material-icons">menu</i></a>
             <ul class="right hide-on-med-and-down">
-                <li class="active"><a th:href="@{/upload}">Upload</a></li>
                 <li><a th:href="@{/}">Explore</a></li>
                 <li><a th:href="@{/categories}">Categories</a></li>
                 <li><a th:href="@{/favorites}">Favorites</a></li>
                 <li><a th:href="@{/users}">Users</a></li>
+                <li class="active"><a th:href="@{/upload}">Upload</a></li>
             </ul>
             <ul id="mobile-nav" class="side-nav">
                 <li class="active"><a th:href="@{/}">Explore</a></li>
                 <li><a th:href="@{/categories}">Categories</a></li>
                 <li><a th:href="@{/favorites}">Favorites</a></li>
                 <li><a th:href="@{/users}">Users</a></li>
+                <li class="active"><a th:href="@{/upload}">Upload</a></li>
             </ul>
         </div>
     </nav>
@@ -30,31 +31,12 @@
 <div class="container upload">
     <div class="row">
         <div class="col s12">
-            <h2 th:text="${heading}">Upload</h2>
-            <div class="subtitle">Upload your GIF</div>
+            <div class="center">
+                <h1>Not available yet</h1>
+                <i class="large material-icons">error</i>
+            </div>
         </div>
     </div>
-    <div class="divider"></div>
-    <form th:action="@{/gifs}" method="post" th:object="${gif}" enctype="multipart/form-data"> <!-- enctype needed for upload files -->
-        <input type="hidden" th:field="*{id}"/>
-        <div class="row">
-            <div class="col s12 l8">
-                <div class="file-field input-field">
-                    <div class="btn"><input type="file" id="file" name="file"/>
-                        <span>Choose an image...</span></div>
-                    <div class="file-path-wrapper">
-                        <input class="file-path validate" type="file"/>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col s12 l8">
-                <input type="text" th:field="*{description}" placeholder="Description"/>
-            </div>
-        </div>
-
-    </form>
 </div>
 
 <div th:replace="layout :: scripts"></div>
